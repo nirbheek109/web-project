@@ -2,29 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Loan Calculator</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    label, input { display: block; margin-top: 10px; }
+    input { padding: 5px; width: 200px; }
+    button { margin-top: 15px; padding: 8px 15px; }
+    #result { margin-top: 20px; font-weight: bold; }
+  </style>
 </head>
 <body>
-  <input type="number">
-  <button>Check</button><br>
-  <label></label>
-  <script>
-    let inputVal = document.querySelector(`input`);
-    let btn = document.querySelector(`button`);
-    let feedback = document.querySelector(`label`);
+  <h2>Loan Calculator</h2>
+  
+  <label>Loan Amount ($):
+    <input type="number" id="amount">
+  </label>
 
-    btn.addEventListener('click', alertFunc);
+  <label>Annual Interest Rate (%):
+    <input type="number" id="rate" step="0.01">
+  </label>
 
-    function alertFunc() {
-      if(inputVal.value === '') {
-        feedback.innerText = 'Please add an input.'
-      } else if(Number(inputVal.value) >= 18){
-        feedback.innerText = 'You are allowed to enter.'
-      } else{
-        feedback.innerText = 'Sorry, you cannot enter.'
-      }
-    }
-  </script>
+  <label>Loan Term (Years):
+    <input type="number" id="years">
+  </label>
+
+  <button onclick="calculateLoan()">Calculate</button>
+
+  <div id="result"></div>
+
+  <script src="loan.js"></script>
 </body>
 </html>
