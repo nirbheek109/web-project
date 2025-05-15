@@ -1,0 +1,114 @@
+@font-face {
+    font-family: "MyFont";
+    src: url(/Fonts/LEMONMILK-Light.otf);
+}
+@font-face {
+    font-family: "MyFont1";
+    src: url(/Fonts/LEMONMILK-Medium.otf);
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+
+
+html, body {
+width: 100%;
+height: 100%;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 10px;
+    background: #3F5EFB;
+    background: linear-gradient(176deg, rgba(235, 156, 255, 1) 0%, rgba(252, 70, 107, 1) 100%);
+    font-family: MyFont1;
+}
+
+.to-do {
+    width: 100%;
+    max-width: 540px;
+    background: white;
+    margin: 100px auto 20px;
+    padding: 40px 30px 70px;
+    border-radius: 10px;
+}
+
+.to-do h2 {
+    display: flex;
+    align-items: center;
+}
+
+img {
+    width: 30px;
+    margin-left: 10px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #edeef0;
+    border-radius: 30px;
+    padding-left: 20px;
+    margin: 25px 0;
+}
+
+input {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-family: MyFont;
+}
+
+button {
+    border: none;
+    outline: line;
+    padding: 16px 50px;
+    background: #0c2461;
+    color: white;
+    border-radius: 140px;
+    font-family: MyFont;
+    cursor: pointer;
+}
+
+ol li {
+    font-size: 17px;
+    user-select: none;
+    cursor: pointer;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 10px;
+    font-family: MyFont;
+    margin-bottom: 15px;
+}
+
+.checked {
+    text-decoration: line-through;
+    color: #8a8a8a;
+}
+
+li img {
+    height: 20px;
+    width: auto;
+    margin: 0;
+}
+
+span {
+    font-size: 25px;
+    padding: 4px 13px;
+}
+
+span:hover {
+    background-color:rgb(212, 212, 212);
+    border-radius: 50%;
+}
