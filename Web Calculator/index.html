@@ -1,50 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Loan Calculator</title>
-  <style>
-    body { font-family: Arial; padding: 20px; }
-    label, input { display: block; margin-top: 10px; }
-    input { padding: 5px; width: 200px; }
-    button { margin-top: 15px; padding: 8px 15px; }
-    #result { margin-top: 20px; font-weight: bold; }
-  </style>
-</head>
-<body>
-  <h2>Loan Calculator</h2>
-  
-  <label>Loan Amount ($):
-    <input type="number" id="amount">
-  </label>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loan Calculator</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+      }
+      label,
+      input {
+        display: block;
+        margin-top: 10px;
+      }
+      input {
+        padding: 5px;
+        width: 200px;
+      }
+      button {
+        margin-top: 15px;
+        padding: 8px 15px;
+      }
+      #result {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Loan Calculator</h2>
 
-  <label>Annual Interest Rate (%):
-    <input type="number" id="rate">
-  </label>
+    <label
+      >Loan Amount ($):
+      <input type="number" id="amount" />
+    </label>
 
-  <label>Loan Term (Years):
-    <input type="number" id="years">
-  </label>
+    <label
+      >Annual Interest Rate (%):
+      <input type="number" id="rate" />
+    </label>
 
-  <button id="btn">Calculate</button>
+    <label
+      >Loan Term (Years):
+      <input type="number" id="years" />
+    </label>
 
-  <div id="result"></div>
+    <button id="btn">Calculate</button>
 
-  <script>
-    const loan = document.getElementById('amount');
-    const rate = document.getElementById('rate');
-    const years = document.getElementById('years');
-    const button = document.getElementById('btn');
-    const result = document.getElementById('result');
+    <div id="result"></div>
+    <script>
+      const loan = document.getElementById("amount");
+      const rate = document.getElementById("rate");
+      const years = document.getElementById("years");
+      const button = document.getElementById("btn");
+      const result = document.getElementById("result");
 
-    button.addEventListener('click', function(){
-      const loanVal = Number(loan.value);
-      const rateVal = Number(rate.value);
-      const year = Number(years.value)
-      const month = year * 12;
-      const monthlyPay = (loanVal + ((rateVal / 100) * loanVal) * year) / month;
-      return result.innerText = monthlyPay;
-    })
-  </script>
-</body>
+      button.addEventListener("click", function () {
+        const loanVal = Number(loan.value);
+        const rateVal = Number(rate.value) / 12 / 100;
+        const year = Number(years.value);
+        const month = year * 12;
+        const monthlyPay =
+          (loanVal * rateVal * Math.pow(1 + rateVal, month)) /
+          (Math.pow(1 + rateVal, month) - 1);
+        return (result.innerText = isFinite(monthlyPay)
+          ? `Monthly Payment = $${monthlyPay.toFixed(2)}`
+          : `Please fill all the input field with a valid number.`);
+      });
+    </script>
+  </body>
 </html>
