@@ -42,7 +42,7 @@
       const rateVal = Number(rate.value);
       const year = Number(years.value)
       const month = year * 12;
-      const monthlyPay = ((loanVal + ((rateVal / 100) * loanVal)) * year) / month;
+      const monthlyPay = (loanVal + ((rateVal / 100) * loanVal) * year) / month;
       return result.innerText = monthlyPay;
     })
   </script>
