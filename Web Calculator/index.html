@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Loan Calculator</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Loan Calculator</title>
     <style>
       body {
         font-family: Arial;
@@ -45,28 +46,15 @@
       <input type="number" id="years" />
     </label>
 
-    <button id="btn">Calculate</button>
+    <button type="submit" id="btn">Calculate</button>
 
-    <div id="result"></div>
-    <script>
-      const loan = document.getElementById("amount");
-      const rate = document.getElementById("rate");
-      const years = document.getElementById("years");
-      const button = document.getElementById("btn");
-      const result = document.getElementById("result");
-
-      button.addEventListener("click", function () {
-        const loanVal = Number(loan.value);
-        const rateVal = Number(rate.value) / 12 / 100;
-        const year = Number(years.value);
-        const month = year * 12;
-        const monthlyPay =
-          (loanVal * rateVal * Math.pow(1 + rateVal, month)) /
-          (Math.pow(1 + rateVal, month) - 1);
-        return (result.innerText = isFinite(monthlyPay)
-          ? `Monthly Payment = $${monthlyPay.toFixed(2)}`
-          : `Please fill all the input field with a valid number.`);
-      });
-    </script>
+    <div id="m"></div>
+    <script src="script.js"></script>
   </body>
+</html>
+
+</head>
+<body>
+  
+</body>
 </html>
