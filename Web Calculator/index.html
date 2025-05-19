@@ -22,34 +22,84 @@
         margin-top: 15px;
         padding: 8px 15px;
       }
-      #result {
+      #monthlyPayment, #totalPayment, #totalInterest {
         margin-top: 20px;
         font-weight: bold;
+      }
+      #reset {
+        display: none;
       }
     </style>
   </head>
   <body>
     <h2>Loan Calculator</h2>
 
-    <label
-      >Loan Amount ($):
-      <input type="number" id="amount" />
-    </label>
+    <form id="resetForm">
+          <label
+            >Loan Amount ($):
+            <input type="number" id="amount" />
+          </label>
 
-    <label
-      >Annual Interest Rate (%):
-      <input type="number" id="rate" />
-    </label>
+          <label
+            >Annual Interest Rate (%):
+            <input type="number" id="rate" />
+          </label>
 
-    <label
-      >Loan Term (Years):
-      <input type="number" id="years" />
-    </label>
+          <label
+            >Loan Term (Years):
+            <input type="number" id="years" />
+          </label>
+    </form>
 
-    <button type="submit" id="btn">Calculate</button>
+    <button type="button" id="calculate" onclick="calculateLoan()">Calculate</button>
+    <button type="reset" id="reset" onclick="resetForm()">Reset</button>
 
-    <div id="m"></div>
-    <script src="script.js"></script>
+    <div class="mother">
+      <div id="monthlyPayment"></div>
+      <div id="totalPayment"></div>
+      <div id="totalInterest"></div>
+    </div>
+
+    <script>
+      const loan = document.getElementById("amount");
+      const rate = document.getElementById("rate");
+      const years = document.getElementById("years");
+      const cBtn = document.getElementById("calculate");
+      const rBtn = document.getElementById("reset");
+      const result = document.getElementById("monthlyPayment");
+      const result2 = document.getElementById("totalPayment");
+      const result3 = document.getElementById("totalInterest");
+      const form = document.getElementById(`resetForm`);
+      const mother = document.querySelector(`.mother`);
+
+      function calculateLoan() {
+        mother.style.display = "block";
+        const loanVal = Number(loan.value);
+        const rateVal = Number(rate.value) / 12 / 100;
+        const year = Number(years.value);
+        const month = year * 12;
+        rBtn.style.display = "inline-block";
+        const monthlyPay =
+          (loanVal * rateVal * Math.pow(1 + rateVal, month)) /
+          (Math.pow(1 + rateVal, month) - 1);
+        result.innerText = isFinite(monthlyPay)
+          ? `Monthly Payment: $${monthlyPay.toFixed(2)}`
+          : `Please fill all the input field with a valid number.`;
+        const paymentCount = Number(monthlyPay) * month;
+        result2.innerText = `Total Payment: $${(monthlyPay * month).toFixed(2)}`;
+        const interestCount = `Total Interest: $${(paymentCount - loanVal).toFixed(
+          2
+        )}`;
+        result3.innerText = interestCount;
+        return;
+      }
+
+      resetForm = () => {
+        form.reset();
+        mother.style.display = "none";
+      };
+
+    </script>
   </body>
 </html>
 
