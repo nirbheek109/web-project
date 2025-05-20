@@ -84,7 +84,10 @@
         const month = year * 12;
         rBtn.style.display = "inline-block";
         if (!loanVal || !rateVal || !year) {
-          result.innerText = `Please fill all fields with valid numbers.`
+          result.innerText = `Please fill all fields with valid numbers.`;
+          result2.innerText = ``;
+          result3.innerText = ``;
+          return;
         }
         const monthlyPay =
           (loanVal * rateVal * Math.pow(1 + rateVal, month)) /
