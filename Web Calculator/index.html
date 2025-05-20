@@ -60,16 +60,20 @@
       <div id="totalInterest"></div>
     </div>
 
+    <div id="new"></div>
+
     <script>
-      const loan = document.getElementById("amount");
-      const rate = document.getElementById("rate");
-      const years = document.getElementById("years");
-      const cBtn = document.getElementById("calculate");
-      const rBtn = document.getElementById("reset");
-      const result = document.getElementById("monthlyPayment");
-      const result2 = document.getElementById("totalPayment");
-      const result3 = document.getElementById("totalInterest");
-      const form = document.getElementById(`resetForm`);
+      const $ = (id) => document.getElementById(id);
+
+      const loan = $('amount');
+      const rate = $(`rate`);
+      const years = $(`years`);
+      const cBtn = $(`calculate`);
+      const rBtn = $(`reset`);
+      const result = $(`monthlyPayment`);
+      const result2 = $(`totalPayment`);
+      const result3 = $(`totalInterest`);
+      const form = $(`resetForm`);
       const mother = document.querySelector(`.mother`);
 
       function calculateLoan() {
@@ -87,13 +91,17 @@
           (Math.pow(1 + rateVal, month) - 1);
         result.innerText = isFinite(monthlyPay)
           ? `Monthly Payment: $${monthlyPay.toFixed(2)}`
-          : `Please fill all the input field with a valid number.`;
+          : `Please fill all the input field with a valid number.`
         const paymentCount = Number(monthlyPay) * month;
-        result2.innerText = `Total Payment: $${(monthlyPay * month).toFixed(2)}`;
-        const interestCount = `Total Interest: $${(paymentCount - loanVal).toFixed(
-          2
-        )}`;
-        result3.innerText = interestCount;
+        result2.innerText = 
+          isFinite(monthlyPay * month)
+          ? `Total Payment: $${(monthlyPay * month).toFixed(2)}`
+          : ``
+        const interestCount = `Total Interest: $${(paymentCount - loanVal).toFixed(2)}`;
+        result3.innerText =
+          isFinite((paymentCount - loanVal).toFixed(2))
+          ? `Total Interest: $${(paymentCount - loanVal).toFixed(2)}`
+          : ``
         return;
       }
 

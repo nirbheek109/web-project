@@ -35,3 +35,10 @@ resetForm = () => {
   form.reset();
   mother.style.display = "none";
 };
+
+const $ = (id) => {
+  return document.getElementById(id);
+};
+
+const neww = $("new");
+neww.innerText = `hello`;
